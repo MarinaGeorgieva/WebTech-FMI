@@ -40,7 +40,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 <body>
 	<div id="header">
  		<div id="left">
-    		<label>cleartuts</label>
+    		<label>Course Calendar</label>
     	</div>
     	<div id="right">
      		<div id="content">
