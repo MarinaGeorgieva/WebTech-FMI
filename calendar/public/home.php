@@ -33,9 +33,14 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 
     <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
+    <script src='lib/fullcalendar/fullcalendar.js'></script>
+
+    <script type="text/javascript" src="js/calendar.js"></script>
 </head>
 <body>
 	<header class="nav navbar-inverse navbar-fixed-top">
@@ -53,8 +58,8 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 		</div>
 	</div>
 	<div class="container">
-		<h1>Welcome to Course Calendar System</h1>
-	</div>
+    	<div id='calendar'></div>
+    </div>
 	<footer>
 		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
 	</footer>
