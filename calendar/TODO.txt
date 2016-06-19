@@ -1,0 +1,2 @@
+Logout does not work
+Fix quotes in user full name
