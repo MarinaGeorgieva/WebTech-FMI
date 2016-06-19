@@ -7,9 +7,9 @@ session_start();
 if(!isset($_SESSION['user'])) {
 	redirect_to("index.php");
 }
-else if(isset($_SESSION['user']) != "") {
-	redirect_to("home.php");
-}
+// else if(isset($_SESSION['user']) != "") {
+// 	redirect_to("home.php");
+// }
 
 if(isset($_GET['logout'])) {
 	session_destroy();

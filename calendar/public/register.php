@@ -1,18 +1,28 @@
 <?php
+
 include_once '../includes/database.php';
 include_once '../includes/utils.php';
 
 session_start();
 if(isset($_SESSION['user']) != "") {
-	// header("Location: home.php");
 	redirect_to("home.php");
 }
 
-if(isset($_POST['btn-signup'])) {
-	$username = $connection->quote($_POST['username']);
-	$firstName = $connection->quote($_POST['first_name']);
-	$lastName = $connection->quote($_POST['last_name']);
-	$password = md5($connection->quote($_POST['password']));
+if(isset($_POST['btn-register'])) {
+	$username = $_POST['username'];
+	$firstName = $_POST['first_name'];
+	$lastName = $_POST['last_name'];
+	$password = $_POST['password'];
+	$confirmPassword = $_POST['confirm_password'];
+
+	if ($password != $confirmPassword) {
+		?>
+		<script>alert('Password and confirm password do not match!')</script>
+		<?php
+		redirect_to("register.php");
+	}
+
+	$password = md5($password);
 
 	$sql = "INSERT INTO users (username, password, first_name, last_name) 
 		VALUES (:username, :password, :first_name, :last_name)";
@@ -29,12 +39,12 @@ if(isset($_POST['btn-signup'])) {
 
 	if($is_successful) {
 		?>
-        	<script>alert('successfully registered ');</script>
+        <script>alert('Successfully registered!');</script>
         <?php
  	}
  	else {
  		?>
-        	<script>alert('error while registering you...');</script>
+        <script>alert('Username is taken!');</script>
         <?php
  	}
 }
@@ -55,31 +65,42 @@ if(isset($_POST['btn-signup'])) {
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<center>
-		<div id="login-form">
-			<form method="post">
-				<table align="center" width="30%" border="0">
-					<tr>
-						<td><input type="text" name="username" placeholder="Username" required /></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="first_name" placeholder="First Name" required /></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="last_name" placeholder="Last Name" required /></td>
-					</tr>
-					<tr>
-						<td><input type="password" name="password" placeholder="Password" required /></td>
-					</tr>
-					<tr>
-						<td><button type="submit" name="btn-signup">Sign Me Up</button></td>
-					</tr>
-					<tr>
-						<td><a href="index.php">Sign In Here</a></td>
-					</tr>
-				</table>
-			</form>
+	<header class="nav navbar-inverse navbar-fixed-top">
+	</header>
+	<div class="container">
+		<div class="navbar-header">
+			<a href="" class="navbar-brand">Event System</a>
 		</div>
-	</center>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="">Home</a></li>
+				<li><a href="register.php">Register</a></li>
+				<li><a href="login.php">Login</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<form method="post">
+			<label for="username">Username</label>
+			<input id="username" type="text" name="username" placeholder="Username" class="form-control" required>
+			<br>
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password" placeholder="Password" class="form-control" required>
+			<br>
+			<label for="confirm-password">Confirm Password</label>
+			<input id="confirm-password" type="password" name="confirm_password" placeholder="Confirm password" class="form-control" required>
+			<br>
+			<label for="first-name">First Name</label>
+			<input id="first-name" type="text" name="first_name" placeholder="First Name" class="form-control" required>
+			<br>
+			<label for="last-name">Last Name</label>
+			<input id="last-name" type="text" name="last_name" placeholder="Last Name" class="form-control" required>
+			<br>
+			<input type="submit" value="Register" class="btn btn-lg" name="btn-register">
+		</form>
+	</div>
+	<footer>
+		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
+	</footer>
 </body>
 </html>

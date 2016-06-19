@@ -1,2 +1,2 @@
-Logout does not work
-Fix quotes in user full name
+Fix password and confirm password check and show suitable error
+On successful registration redirect to login

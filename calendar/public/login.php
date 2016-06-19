@@ -1,11 +1,30 @@
 <?php
 
-include_once '../includes/utils.php';  
+include_once '../includes/database.php';
+include_once '../includes/user.php';
+include_once '../includes/utils.php';
 
 session_start();
 
 if(isset($_SESSION['user']) != "") {
 	redirect_to("home.php");
+}
+
+if(isset($_POST['btn-login'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+
+	$user = User::get_by_username($username);
+
+	if($user['password'] == md5($password)) {
+		$_SESSION['user'] = $user['id'];
+		redirect_to("home.php");
+	}
+	else {
+  		?>
+        	<script>alert('Invalid username or password');</script>
+        <?php
+ 	}
 }
 
 ?>
@@ -40,10 +59,18 @@ if(isset($_SESSION['user']) != "") {
 		</div>
 	</div>
 	<div class="container">
-		<h1>Welcome to Course Calendar System</h1>
+		<form method="post">
+			<label for="username">Username</label>
+			<input id="username" type="text" name="username" placeholder="Username" class="form-control" required>
+			<br>
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password" placeholder="Password" class="form-control" required>
+			<br>
+			<input type="submit" value="Login" class="btn btn-lg" name="btn-login">
+		</form>
 	</div>
 	<footer>
 		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
-	</footer>	
+	</footer>
 </body>
 </html>

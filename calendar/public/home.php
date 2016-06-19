@@ -38,15 +38,26 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="header">
- 		<div id="left">
-    		<label>Course Calendar</label>
-    	</div>
-    	<div id="right">
-     		<div id="content">
-         		hi <?php echo $currentUser->get_full_name(); ?>&nbsp;<a href="logout.php?logout">Sign Out</a>
-        	</div>
-    	</div>
+	<header class="nav navbar-inverse navbar-fixed-top">
+	</header>
+	<div class="container">
+		<div class="navbar-header">
+			<a href="" class="navbar-brand">Course Calendar</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="">Home</a></li>
+				<li><a href="">Hello, <?php echo $currentUser->get_full_name(); ?></a></li>
+				<li><a href="logout.php?logout">Logout</a></li>
+			</ul>
+		</div>
 	</div>
+	<div class="container">
+		<h1>Welcome to Course Calendar System</h1>
+	</div>
+	<footer>
+		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
+	</footer>
 </body>
 </html>
+
