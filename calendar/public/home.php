@@ -41,6 +41,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script src='lib/fullcalendar/fullcalendar.js'></script>
 
     <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
 </head>
 <body>
 	<header class="nav navbar-inverse navbar-fixed-top">
@@ -57,6 +58,12 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 			</ul>
 		</div>
 	</div>
+
+
+	<div class="container">
+		<div id="output"></div>
+	</div>
+
 	<div class="container">
     	<div id='calendar'></div>
     </div>

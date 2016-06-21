@@ -37,9 +37,6 @@ $(document).ready(function() {
 				// color: 'blue',
 				// textColor: 'white'
 			}
-
-			// any other event sources...
 		]
 	})
-
 });
