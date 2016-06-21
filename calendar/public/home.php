@@ -61,7 +61,11 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 
 
 	<div class="container">
-		<div id="output"></div>
+		<div id="all"></div>
+	</div>
+
+	<div class="container">
+		<div id="withId"></div>
 	</div>
 
 	<div class="container">
