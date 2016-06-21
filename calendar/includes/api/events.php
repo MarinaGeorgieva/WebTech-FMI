@@ -1,8 +1,9 @@
 <?php 
 
-include_once 'database.php';
+include_once '../database.php';
 
 function get_all() {
+	global $connection;
 	$sql = "SELECT * FROM events";
 	$query = $connection->prepare($sql);
 	$query->execute();
@@ -11,7 +12,8 @@ function get_all() {
 	return json_encode($result);
 }
 
-function get_by_id($id) {	
+function get_by_id($id) {
+	global $connection;	
 	$sql = "SELECT * FROM events WHERE id=:id";
 	$query = $connection->prepare($sql);
 	$query->bindParam(":id", $id);
@@ -21,16 +23,15 @@ function get_by_id($id) {
 	return json_encode($result);
 }
 
-function add($title, $description, $place, $date, $type) {
+function create($title, $description, $type) {
+	global $connection;
 	$lastId = $connection->lastInsertId();
 
-	$sql = "INSERT INTO events (title, description, place, date, type) 
-		VALUES (:title, :description, :place, :date, :type)";
+	$sql = "INSERT INTO events (title, description, type) 
+		VALUES (:title, :description, :type)";
 	$query = $connection->prepare($sql);
 	$query->bindParam(":title", $title);
 	$query->bindParam(":description", $description);
-	$query->bindParam(":place", $place);
-	$query->bindParam(":date", $date);
 	$query->bindParam(":type", $type);
 	$query->execute();
 
@@ -54,16 +55,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$title = $_POST["title"];
-	$description = $_POST["description"];
-	$place = $_POST["place"];
-	$date = $_POST["date"];
-	$type = $_POST["type"];
+	$json = file_get_contents('php://input');
+	$event = json_decode($json);
 
-	$result = add($title, $description, $place, $date, $type);
+	$title = $event->title;
+	$description = $event->description;
+	$type = $event->type;
+
+	$result = create($title, $description, $type);
 	echo $result;
 }
-
-
 
 ?>

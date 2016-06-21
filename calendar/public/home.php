@@ -69,6 +69,10 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 	</div>
 
 	<div class="container">
+		<div id="post"></div>
+	</div>
+
+	<div class="container">
     	<div id='calendar'></div>
     </div>
 	<footer>

@@ -1,7 +1,15 @@
 $(document).ready(function() {
 
+	// var post = {
+	// 	title: 'Event 3',
+	// 	description: 'test post',
+	// 	date: new Date(2016, 06, 20),
+	// 	type: 'homework'
+	// };
+
 	$.ajax({
-		url: '../includes/events.php',
+		url: '../includes/api/events.php',
+		type: 'GET',
 		data: '',
 		dataType: 'json',
 		success: function(data) {
@@ -16,7 +24,8 @@ $(document).ready(function() {
 	});
 
 	$.ajax({
-		url: '../includes/events.php',
+		url: '../includes/api/events.php',
+		type: 'GET',
 		data: {
 			id: 1
 		},
@@ -29,4 +38,15 @@ $(document).ready(function() {
 			$('#withId').append('<div class="row"><strong>date: </strong>' + date + '<strong> title: </strong>' + title + '</div>');
 		}
 	});
+
+	// $.ajax({
+	// 	url: '../includes/api/events.php',
+	// 	type: 'POST',
+	// 	data: JSON.stringify(post),
+	// 	dataType: 'json',
+	// 	success: function(response) {
+	// 		console.log(response);
+	// 		$('#post').append('<div class="row"><strong> ' + response + '</strong></div>');
+	// 	}
+	// })
 });
