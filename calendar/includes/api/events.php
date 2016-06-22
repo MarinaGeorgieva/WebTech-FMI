@@ -1,6 +1,7 @@
 <?php 
 
 include_once '../database.php';
+include_once '../utils.php';
 
 function get_all() {
 	global $connection;
@@ -23,16 +24,27 @@ function get_by_id($id) {
 	return json_encode($result);
 }
 
-function create($title, $description, $type) {
+function create($title, $description, $type, $place, $date) {
 	global $connection;
 	$lastId = $connection->lastInsertId();
 
-	$sql = "INSERT INTO events (title, description, type) 
-		VALUES (:title, :description, :type)";
-	$query = $connection->prepare($sql);
+	$sql = "";
+	if (is_null($date)) {
+		$sql = "INSERT INTO events (title, description, type, place, date) 
+		VALUES (:title, :description, :type, :place, now())"; 
+		$query = $connection->prepare($sql);
+	}
+	else {
+		$sql = "INSERT INTO events (title, description, type, place, date) 
+		VALUES (:title, :description, :type, :place, :date)";
+		$query = $connection->prepare($sql);
+		$query->bindParam(":date", $date);
+	}
+	
 	$query->bindParam(":title", $title);
 	$query->bindParam(":description", $description);
 	$query->bindParam(":type", $type);
+	$query->bindParam(":place", $place);
 	$query->execute();
 
 	$newId = $connection->lastInsertId();
@@ -58,11 +70,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$json = file_get_contents('php://input');
 	$event = json_decode($json);
 
+	if (!isset($event->title)) {
+		echo "err";
+	}
+
+	if (!isset($event->description)) {
+		echo "err";
+	}
+
+	if (!isset($event->type)) {
+		echo "err";
+	}
+
 	$title = $event->title;
 	$description = $event->description;
 	$type = $event->type;
+	$place = isset($event->place) ? $event->place : "NULL";
+	$date = isset($event->date) ? $event->date : null;
 
-	$result = create($title, $description, $type);
+	$result = create($title, $description, $type, $place, $date);
 	echo $result;
 }
 

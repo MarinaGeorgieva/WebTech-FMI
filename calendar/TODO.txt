@@ -2,3 +2,4 @@ Fix password and confirm password check and show suitable error
 On successful registration redirect to login
 Bootstrap fix
 Fix api
+Fix request errors
