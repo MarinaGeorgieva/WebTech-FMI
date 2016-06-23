@@ -40,7 +40,6 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script src="lib/moment/moment.min.js"></script>
     <script src='lib/fullcalendar/fullcalendar.js'></script>
 
-    <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/home.js"></script>
 </head>
 <body>
@@ -58,22 +57,8 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 			</ul>
 		</div>
 	</div>
-
-
 	<div class="container">
-		<div id="all"></div>
-	</div>
-
-	<div class="container">
-		<div id="withId"></div>
-	</div>
-
-	<div class="container">
-		<div id="post"></div>
-	</div>
-
-	<div class="container">
-    	<div id='calendar'></div>
+    	<div id="calendar"></div>
     </div>
 	<footer>
 		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
