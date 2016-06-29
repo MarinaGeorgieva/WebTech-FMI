@@ -20,9 +20,11 @@ $(document).ready(function() {
 			for (i = 0; i < len; i++) {
 				var title = data[i].title;
 				var date = data[i].date;
+				var description = data[i].description;
 				var event = {
 					title: title,
-					start: date
+					start: date,
+					description: description
 				};
 				allEvents.push(event);
 				// $('#all').append('<div class="row"><strong>date: </strong>' + date + '<strong> title: </strong>' + title + '</div>');
@@ -33,9 +35,9 @@ $(document).ready(function() {
 			$('#calendar').fullCalendar({
 				// put your options and callbacks here
 				header: {
-					left: 'prev',
-					center: 'title',
-					right: 'today next'
+					left: '',
+					center: 'prev title next',
+					right: 'today'
 				},
 				eventSources: [
 
@@ -66,7 +68,13 @@ $(document).ready(function() {
 						// color: 'blue',
 						// textColor: 'white'
 					}
-				]
+				],
+				eventClick: function(event, jsEvent, view) {
+					$('#modalTitle').html(event.title);
+					$('#modalBody').html(event.description);
+					// $('#eventUrl').attr('href', event.url);
+					$('#fullCalModal').modal();
+				}
 			});
 		}
 	});
