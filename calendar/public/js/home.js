@@ -15,12 +15,14 @@ $(document).ready(function() {
 		data: '',
 		dataType: 'json',
 		success: function(data) {
-			var i,
-				len = data.length;
+			var eventsData = data.events,
+				i,
+				len = eventsData.length;
+
 			for (i = 0; i < len; i++) {
-				var title = data[i].title;
-				var date = data[i].date;
-				var description = data[i].description;
+				var title = eventsData[i].title;
+				var date = eventsData[i].date;
+				var description = eventsData[i].description;
 				var event = {
 					title: title,
 					start: date,
@@ -29,8 +31,6 @@ $(document).ready(function() {
 				allEvents.push(event);
 				// $('#all').append('<div class="row"><strong>date: </strong>' + date + '<strong> title: </strong>' + title + '</div>');
 			}
-
-			console.log(allEvents);
 
 			$('#calendar').fullCalendar({
 				// put your options and callbacks here
@@ -74,7 +74,17 @@ $(document).ready(function() {
 					$('#modalBody').html(event.description);
 					// $('#eventUrl').attr('href', event.url);
 					$('#fullCalModal').modal();
-				}
+				},
+				// If the current user is admin
+				// editable: true,
+				// eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+
+				// 	alert(event.title + " was dropped on " + event.start.format());
+
+				// 	if (!confirm("Are you sure about this change?")) {
+				// 		revertFunc();
+				// 	}
+				// }
 			});
 		}
 	});

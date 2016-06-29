@@ -32,6 +32,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" xmlns="">
 
     <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Arimo|Roboto|Nunito' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
 
@@ -39,6 +40,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script src="lib/moment/moment.min.js"></script>
     <script src='lib/fullcalendar/fullcalendar.js'></script>
+    <!-- <script src='lib/fullcalendar/lang/bg.js'></script> -->
 
     <script type="text/javascript" src="js/home.js"></script>
 </head>
@@ -90,8 +92,10 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 	</div>
 
 	<footer>
-		<p class="text-center">&copy; Web Tech Course @ FMI 2016</p>
-	</footer>
+    	<div class="container">
+    		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
+      	</div>
+    </footer>
 </body>
 </html>
 

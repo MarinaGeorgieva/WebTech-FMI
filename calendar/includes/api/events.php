@@ -8,9 +8,13 @@ function get_all() {
 	$sql = "SELECT * FROM events";
 	$query = $connection->prepare($sql);
 	$query->execute();
-	$result = $query->fetchAll();
+	$data = array();
+
+	while($row=$query->fetch(PDO::FETCH_ASSOC)){
+		$data["events"][] = $row;
+	}
 	
-	return json_encode($result);
+	return json_encode($data);
 }
 
 function get_by_id($id) {
@@ -19,9 +23,13 @@ function get_by_id($id) {
 	$query = $connection->prepare($sql);
 	$query->bindParam(":id", $id);
 	$query->execute();
-	$result = $query->fetch();
+	$data = array();
+
+	while($row=$query->fetch(PDO::FETCH_ASSOC)){
+		$data["events"][] = $row;
+	}
 	
-	return json_encode($result);
+	return json_encode($data);
 }
 
 function create($title, $description, $type, $place, $date) {
