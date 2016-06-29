@@ -1,5 +1,6 @@
 Fix password and confirm password check and show suitable error
 On successful registration redirect to login
-Bootstrap fix
 Fix api
 Fix request errors
+
+Create event - fix success function -> show success message and redirect to events

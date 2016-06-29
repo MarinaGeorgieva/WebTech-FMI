@@ -22,7 +22,7 @@ if(isset($_POST['btn-register'])) {
 		redirect_to("register.php");
 	}
 
-	$password = md5($password);
+	$password = sha1($password);
 
 	$sql = "INSERT INTO users (username, password, first_name, last_name) 
 		VALUES (:username, :password, :first_name, :last_name)";
@@ -91,19 +91,19 @@ if(isset($_POST['btn-register'])) {
 	</nav>
 	<div class="container">
 		<form method="post">
-			<label for="username">Username</label>
+			<label for="username" class="control-label">Username</label>
 			<input id="username" type="text" name="username" placeholder="Username" class="form-control" required>
 			<br>
-			<label for="password">Password</label>
+			<label for="password" class="control-label">Password</label>
 			<input id="password" type="password" name="password" placeholder="Password" class="form-control" required>
 			<br>
-			<label for="confirm-password">Confirm Password</label>
+			<label for="confirm-password" class="control-label">Confirm Password</label>
 			<input id="confirm-password" type="password" name="confirm_password" placeholder="Confirm password" class="form-control" required>
 			<br>
-			<label for="first-name">First Name</label>
+			<label for="first-name" class="control-label">First Name</label>
 			<input id="first-name" type="text" name="first_name" placeholder="First Name" class="form-control" required>
 			<br>
-			<label for="last-name">Last Name</label>
+			<label for="last-name" class="control-label">Last Name</label>
 			<input id="last-name" type="text" name="last_name" placeholder="Last Name" class="form-control" required>
 			<br>
 			<input type="submit" value="Register" class="btn btn-primary" name="btn-register">

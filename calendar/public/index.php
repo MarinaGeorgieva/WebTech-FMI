@@ -1,6 +1,9 @@
 <?php
 
-include_once '../includes/utils.php';  
+include_once '../includes/utils.php';
+include_once '../includes/install.php';
+
+seed_data();  
 
 session_start();
 

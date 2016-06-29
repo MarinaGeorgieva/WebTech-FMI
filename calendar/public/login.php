@@ -16,7 +16,7 @@ if(isset($_POST['btn-login'])) {
 
 	$user = User::get_by_username($username);
 
-	if($user['password'] == md5($password)) {
+	if($user['password'] == sha1($password)) {
 		$_SESSION['user'] = $user['id'];
 		redirect_to("home.php");
 	}
@@ -70,10 +70,10 @@ if(isset($_POST['btn-login'])) {
 	</nav>
 	<div class="container">
 		<form method="post">
-			<label for="username">Username</label>
+			<label for="username" class="control-label">Username</label>
 			<input id="username" type="text" name="username" placeholder="Username" class="form-control" required>
 			<br>
-			<label for="password">Password</label>
+			<label for="password" class="control-label">Password</label>
 			<input id="password" type="password" name="password" placeholder="Password" class="form-control" required>
 			<br>
 			<input type="submit" value="Login" class="btn btn-primary" name="btn-login">

@@ -34,15 +34,11 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Arimo|Roboto|Nunito' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-    <script src="lib/moment/moment.min.js"></script>
-    <script src='lib/fullcalendar/fullcalendar.js'></script>
-    <!-- <script src='lib/fullcalendar/lang/bg.js'></script> -->
 
-    <script type="text/javascript" src="js/home.js"></script>
+    <script type="text/javascript" src="js/create-event.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -59,15 +55,10 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       			<ul class="nav navbar-nav">
-        			<li class="active"><a href="home.php">Home</a></li>
+        			<li><a href="home.php">Home</a></li>
         			<li><a href="">Calendar</a></li>
         			<li><a href="">Events</a></li>
-        			<?php 
-        			if ($currentUser->get_type() == "administrator") {
-        				echo '<li><a href="create-event.php">New Event</a></li>';
-        			}
-
-        			?>        			
+        			<li class="active"><a href="create-event.php">New Event</a></li>
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
       				<li><a href="">Hello, <?php echo $currentUser->get_full_name(); ?></a></li>
@@ -77,31 +68,35 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
   		</div>
 	</nav>
 	<div class="container">
-    	<div id="calendar"></div>
+    	<form method="post">
+			<label for="title" class="control-label">Title</label>
+			<input id="title" type="text" name="title" placeholder="Title" class="form-control" required>
+			<br>
+			<label for="description" class="control-label">Description</label>
+			<input id="description" type="text" name="description" placeholder="Description" class="form-control" required>
+			<br>
+			<label for="date" class="control-label">Date</label>
+			<input id="date" type="datetime-local" name="date" placeholder="Date" class="form-control" required>
+			<br>
+			<label for="type" class="control-label">Type</label>
+			<select class="form-control" id="type" name="type">
+          		<option value="lecture">Lecture</option>
+          		<option value="homework">Homework</option>
+          		<option value="exam">Exam</option>
+          		<option value="test">Test</option>
+          		<option value="exercise">Exercise</option>
+        	</select>
+        	<br>
+			<label for="place" class="control-label">Place</label>
+			<input id="place" type="text" name="place" placeholder="Place" class="form-control">
+			<br>
+			<input type="submit" value="Create" class="btn btn-primary" id="btn-create">
+		</form>
     </div>
-
-
-	<div id="fullCalModal" class="modal fade">
-    	<div class="modal-dialog">
-    	    <div class="modal-content">
-    	        <div class="modal-header">
-    	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                	<h4 id="modalTitle" class="modal-title"></h4>
-            	</div>
-            	<div id="modalBody" class="modal-body"></div>
-            	<div class="modal-footer">
-            	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            	    <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
-            	</div>
-        	</div>
-    	</div>
-	</div>
-
-	<footer>
+    <footer>
     	<div class="container">
-    		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
+        	<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
       	</div>
     </footer>
 </body>
 </html>
-
