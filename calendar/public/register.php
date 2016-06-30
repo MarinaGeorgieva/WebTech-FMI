@@ -66,7 +66,7 @@ if(isset($_POST['btn-register'])) {
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<!-- <nav class="navbar navbar-default">
   		<div class="container-fluid">
   			<div class="navbar-header">
   		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -108,6 +108,37 @@ if(isset($_POST['btn-register'])) {
 			<br>
 			<input type="submit" value="Register" class="btn btn-primary" name="btn-register">
 		</form>
+	</div> -->
+
+	<div class="container">
+    	<div class="row">
+    		<h1 class="text-center welcome-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Course Calendar System</h1>
+        	<div class="col-sm-6 col-md-4 col-md-offset-4">            	
+            	<div class="account-wall">
+            		<h5 class="text-center">Регистрaция</h5>                	
+                	<form class="form-user" method="post">                		
+          				<div class="form-group">	
+            				<input id="username" class="form-control" type="text" name="username" placeholder="Потребителско име" required />          
+          				</div>
+          				<div class="form-group">
+            				<input id="password" class="form-control" type="password" name="password" placeholder="Парола" required />   
+          				</div>
+          				<div class="form-group">
+            				<input id="confirm-password" type="password" name="confirm_password" placeholder="Потвърдете паролата" class="form-control" required>   
+          				</div>
+          				<div class="form-group">
+            				<input id="first-name" type="text" name="first_name" placeholder="Име" class="form-control" required>   
+          				</div>
+          				<div class="form-group">
+            				<input id="last-name" type="text" name="last_name" placeholder="Фамилия" class="form-control" required>
+          				</div>
+          				<div class="form-group">
+            				<button type="submit" name="btn-register" class="btn btn-primary btn-block">Регистрaция</button>
+          				</div>
+                	</form>
+            	</div>
+        	</div>
+    	</div>
 	</div>
 	<footer>
     	<div class="container">

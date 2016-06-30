@@ -1,9 +1,9 @@
-<?php
+<?php 
 
 include_once '../includes/utils.php';
-include_once '../includes/install.php';
+// include_once '../includes/install.php';
 
-seed_data();  
+// seed_data();  
 
 session_start();
 
@@ -27,54 +27,35 @@ if(isset($_SESSION['user']) != "") {
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
-	<!-- <div class="signin-form">
- 		<div class="container">   
-        	<form class="form-signin" method="post" id="login-form">
-				<h2 class="form-signin-heading">Log In to WebApp.</h2>
-				<div id="error">error will be shown here!</div>        
-        		<div class="form-group">
-        			<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
-        			<span id="check-e"></span>
-        		</div>        
-        		<div class="form-group">
-        			<input type="password" class="form-control" placeholder="Password" name="password" id="password" />
-        		</div>              
-        		<div class="form-group">
-            		<button type="submit" class="btn btn-default" name="btn-login" id="btn-login">
-      					<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In
-   					</button> 
-        		</div>  
-        	</form>
-    	</div>
-    </div> -->
-	<nav class="navbar navbar-default">
-  		<div class="container-fluid">
-  			<div class="navbar-header">
-  		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-  		      		<span class="sr-only">Toggle navigation</span>
-  		      		<span class="icon-bar"></span>
-  		      		<span class="icon-bar"></span>
-  		      		<span class="icon-bar"></span>
-  		    	</button>
-  		    	<a class="navbar-brand" href="">Course Calendar</a>
-  		  	</div>
-
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      			<ul class="nav navbar-nav">
-        			<li class="active"><a href="home.php">Home</a></li>
-        			<li><a href="register.php">Register</a></li>
-        			<li><a href="login.php">Login</a></li>
-      			</ul>
-      			<ul class="nav navbar-nav navbar-right">     				
-      			</ul>
-    		</div>
-  		</div>
-	</nav>
-
 	<div class="container">
-		<h1>Welcome to Course Calendar System</h1>
+    	<div class="row">
+    		<h1 class="text-center welcome-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Course Calendar System</h1>
+        	<div class="col-sm-6 col-md-4 col-md-offset-4">            	
+            	<div class="account-wall">
+            		<h5 class="text-center">Влезте в своя профил</h5>                	
+                	<form class="form-user" method="post" id="login-form">
+                		<div id="error"></div>                		
+          				<div class="form-group input-group">
+            				<span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+            				<input id="username" class="form-control" type="text" name="username" placeholder="Потребителско име" />          
+          				</div>
+          				<div class="form-group input-group">
+            				<span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+            				<input id="password" class="form-control" type="password" name="password" placeholder="Парола" />
+          				</div>
+          				<div class="form-group">
+            				<button type="submit" id="btn-login" name="btn-login" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> &nbsp; Вход</button>
+          				</div>
+                	</form>
+            	</div>
+            	<a href="register.php" class="text-center bottom-link">Регистрaция</a>
+        	</div>
+    	</div>
 	</div>
 	<footer>
     	<div class="container">
