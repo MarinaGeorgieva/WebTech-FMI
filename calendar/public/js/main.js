@@ -3,22 +3,18 @@ $(document).ready(function() {
     $("#login-form").validate({
         rules: {
             password: {
-                required: true,
-                minlength: 5
+                required: true
             },
             username: {
-                required: true,
-                minlength: 5
+                required: true
             },
         },
         messages: {
             password: {
-                required: "Моля въведете парола!",
-                minlength: "Паролата трябва да съдържа поне 5 символа!"
+                required: "Моля въведете парола!"
             },
             username: {
-                required: "Моля въведете потребителско име!",
-                minlength: "Потребителското име трябва да съдържа поне 5 символа!"
+                required: "Моля въведете потребителско име!"
             }
         },
         submitHandler: submitForm

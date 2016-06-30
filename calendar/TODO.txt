@@ -1,5 +1,6 @@
-Fix password and confirm password check and show suitable error
-On successful registration redirect to login
+Fix register username is taken error
+
+
 Fix api
 Fix request errors
 
