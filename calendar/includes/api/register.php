@@ -11,17 +11,27 @@ if(isset($_POST["btn-register"])) {
 
     $password = sha1($password);
 
-    $sql = "INSERT INTO users (username, password, first_name, last_name) 
-        VALUES (:username, :password, :first_name, :last_name)";
+    $sql = "SELECT * FROM users WHERE username=:username";
     $query = $connection->prepare($sql);
-
     $query->bindParam(':username', $username);
-    $query->bindParam(':password', $password);
-    $query->bindParam(':first_name', $firstName);
-    $query->bindParam(':last_name', $lastName);
+    $query->execute();    
+    $count = $query->rowCount();
 
-    if($query->execute()) {
-        echo "registered";
+    if ($count == 0) {
+        $sql = "INSERT INTO users (username, password, first_name, last_name) 
+                VALUES (:username, :password, :first_name, :last_name)";
+        $query = $connection->prepare($sql);
+        $query->bindParam(':username', $username);
+        $query->bindParam(':password', $password);
+        $query->bindParam(':first_name', $firstName);
+        $query->bindParam(':last_name', $lastName);
+
+        if($query->execute()) {
+            echo "registered";
+        }
+        else {
+            echo "Регистрацията е неуспешна!";
+        }
     }
     else {
         echo "Потребителското име е заето!";

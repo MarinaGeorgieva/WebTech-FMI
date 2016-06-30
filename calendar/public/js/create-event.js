@@ -9,7 +9,7 @@ $(document).ready(function() {
 		var event = {
 			title: $('#title').val(),
 			description: $('#description').val(),
-			type: $('#type').val(),
+			type: $('#category').val(),
 			date: $('#date').val(),
 			place: $('#place').val()
 		};

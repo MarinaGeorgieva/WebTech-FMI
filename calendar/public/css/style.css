@@ -22,6 +22,10 @@ footer p {
 	margin-top: 20px;
 }
 
+.nav li a {
+	font-size: 14px;
+}
+
 /* Login and Register form*/
 .form-user
 {
@@ -59,7 +63,6 @@ footer p {
 {
     color: #555;
     font-size: 36px;
-    /*font-weight: 400;*/
     display: block;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -74,16 +77,18 @@ footer p {
 label.error {
 	color: red;
 }
+/* Login and Register form */
 
+/* Calendar */
 #calendar {
 	margin-bottom: 20px;
-}
-
-.nav li a {
-	font-size: 14px;
 }
 
 .fc-event {
 	cursor: pointer;
 }
+/* Calendar */
 
+.welcome-header {
+	margin-top: 60px;
+}

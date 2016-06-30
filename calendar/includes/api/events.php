@@ -51,26 +51,26 @@ function get_by_category($category) {
 	return json_encode($data);
 }
 
-function create($title, $description, $type, $place, $date) {
+function create($title, $description, $category, $place, $date) {
 	global $connection;
 	$lastId = $connection->lastInsertId();
 
 	$sql = "";
 	if (is_null($date)) {
-		$sql = "INSERT INTO events (title, description, type, place, date) 
-		VALUES (:title, :description, :type, :place, now())"; 
+		$sql = "INSERT INTO events (title, description, category, place, date) 
+		VALUES (:title, :description, :category, :place, now())"; 
 		$query = $connection->prepare($sql);
 	}
 	else {
-		$sql = "INSERT INTO events (title, description, type, place, date) 
-		VALUES (:title, :description, :type, :place, :date)";
+		$sql = "INSERT INTO events (title, description, category, place, date) 
+		VALUES (:title, :description, :category, :place, :date)";
 		$query = $connection->prepare($sql);
 		$query->bindParam(":date", $date);
 	}
 	
 	$query->bindParam(":title", $title);
 	$query->bindParam(":description", $description);
-	$query->bindParam(":type", $type);
+	$query->bindParam(":category", $category);
 	$query->bindParam(":place", $place);
 	$query->execute();
 
@@ -111,17 +111,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		echo "err";
 	}
 
-	if (!isset($event->type)) {
+	if (!isset($event->category)) {
 		echo "err";
 	}
 
 	$title = $event->title;
 	$description = $event->description;
-	$type = $event->type;
-	$place = isset($event->place) ? $event->place : "NULL";
+	$category = $event->category;
+	$place = isset($event->place) ? $event->place : null;
 	$date = isset($event->date) ? $event->date : null;
 
-	$result = create($title, $description, $type, $place, $date);
+	$result = create($title, $description, $category, $place, $date);
 	echo $result;
 }
 

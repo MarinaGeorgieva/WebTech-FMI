@@ -40,79 +40,60 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script src="lib/moment/moment.min.js"></script>
     <script src='lib/fullcalendar/fullcalendar.js'></script>
-    <!-- <script src='lib/fullcalendar/lang/bg.js'></script> -->
-
-    <script type="text/javascript" src="js/home.js"></script>
+    <script src='lib/fullcalendar/lang/bg.js'></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
   			<div class="navbar-header">
-  		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+  		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
   		      		<span class="sr-only">Toggle navigation</span>
   		      		<span class="icon-bar"></span>
   		      		<span class="icon-bar"></span>
   		      		<span class="icon-bar"></span>
   		    	</button>
-  		    	<a class="navbar-brand" href="">Course Calendar</a>
+  		    	<a class="navbar-brand" href="home.php"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Course Calendar</a>
   		  	</div>
 
-    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    		<div class="collapse navbar-collapse" id="navbar">
       			<ul class="nav navbar-nav">
-        			<li class="active"><a href="home.php">Home</a></li>
-        			<li><a href="">Calendar</a></li>
+        			<li class="active"><a href="home.php">Начало</a></li>
+        			<li><a href="calendar.php">Календар</a></li>
         			<li class="dropdown">
-          				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events <span class="caret"></span></a>
+          				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Събития <span class="caret"></span></a>
           				<ul class="dropdown-menu" role="menu">
-            				<li><a id="lecture" href="view-events.php?category=lecture">Lectures</a></li>
-            				<li><a id="homework" href="view-events.php?category=homework">Homeworks</a></li>
-            				<li><a id="exercise" href="view-events.php?category=exercise">Exercises</a></li>
-            				<li><a id="test" href="view-events.php?category=test">Tests</a></li>
-            				<li><a id="project" href="view-events.php?category=project">Projects</a></li>
+            				<li><a id="lecture" href="view-events.php?category=lecture">Лекции</a></li>
+            				<li><a id="homework" href="view-events.php?category=homework">Домашни</a></li>
+            				<li><a id="exercise" href="view-events.php?category=exercise">Упражнения</a></li>
+            				<li><a id="test" href="view-events.php?category=test">Контролни</a></li>
+            				<li><a id="project" href="view-events.php?category=project">Проекти</a></li>
             				<li class="divider"></li>
-            				<li><a id="external" href="view-events.php?category=external">External Events</a></li>
+            				<li><a id="external" href="view-events.php?category=external">Външни събития</a></li>
           				</ul>
         			</li>
-        			<!-- <li><a href="events.php">Events</a></li> -->
         			<?php 
         			if ($currentUser->get_type() == "administrator") {
-        				echo '<li><a href="create-event.php">New Event</a></li>';
+        				echo '<li><a href="create-event.php">Ново Събитие</a></li>';
         			}
 
         			?>        			
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
-      				<li><a href="">Hello, <?php echo $currentUser->get_full_name(); ?></a></li>
-        			<li><a href="logout.php?logout">Logout</a></li>
+      				<li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $currentUser->get_full_name(); ?></a></li>
+      				<li><a href="logout.php?logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Изход</a></li>
       			</ul>
     		</div>
   		</div>
 	</nav>
 	<div class="container">
-    	<div id="calendar"></div>
-    </div>
-
-
-	<div id="fullCalModal" class="modal fade">
-    	<div class="modal-dialog">
-    	    <div class="modal-content">
-    	        <div class="modal-header">
-    	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                	<h4 id="modalTitle" class="modal-title"></h4>
-            	</div>
-            	<div id="modalBody" class="modal-body"></div>
-            	<div class="modal-footer">
-            	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            	    <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
-            	</div>
-        	</div>
-    	</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="welcome-header">Добре дошли в системата за събития за курса WWW Технологии!</h2>
+				<p class="lead">Тук може да прегледате всички важни събития за курса като домашни, контролни, лекции, упражнения, проекти, реферати и други. Също да управлявате своя календар, като добавите само събитията, които ви интересуват.</p>
+				<a href="calendar.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> &nbsp; Към календара</a>
+			</div>			
+		</div>		
 	</div>
-
-	<div>
-		<input class="form-control hidden" id="username-hidden" type="text" value=<?php echo $currentUser->get_username(); ?>>
-	</div>
-
 	<footer>
     	<div class="container">
     		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
@@ -120,4 +101,3 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     </footer>
 </body>
 </html>
-

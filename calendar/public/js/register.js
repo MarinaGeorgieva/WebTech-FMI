@@ -56,12 +56,10 @@ $(document).ready(function() {
 			success: function(data) {
 				if (data == "registered") {
 					window.location.href = "index.php";
-					// setTimeout('$(".form-signin").fadeOut(500, function(){ $(".signin-form").load("success.php"); }); ', 5000);
 				} else {
 					$("#error").fadeIn(1000, function() {
-						$("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; ' + data + ' !</div>');
+						$("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; ' + data + '</div>');
 					});
-					console.log("errror");
 				}
 			}
 		});

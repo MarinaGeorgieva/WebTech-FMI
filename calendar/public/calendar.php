@@ -34,11 +34,15 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <link rel="stylesheet" href="lib/bootstrap-3.2.0/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Arimo|Roboto|Nunito' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel='stylesheet' href='lib/fullcalendar/fullcalendar.css' />
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
+    <script src='lib/fullcalendar/fullcalendar.js'></script>
+    <script src='lib/fullcalendar/lang/bg.js'></script>
 
-    <script type="text/javascript" src="js/create-event.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -56,7 +60,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     		<div class="collapse navbar-collapse" id="navbar">
       			<ul class="nav navbar-nav">
         			<li><a href="home.php">Начало</a></li>
-        			<li><a href="calendar.php">Календар</a></li>
+        			<li class="active"><a href="calendar.php">Календар</a></li>
         			<li class="dropdown">
           				<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Събития <span class="caret"></span></a>
           				<ul class="dropdown-menu" role="menu">
@@ -69,7 +73,12 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
             				<li><a id="external" href="view-events.php?category=external">Външни събития</a></li>
           				</ul>
         			</li>
-        			<li class="active"><a href="create-event.php">Ново Събитие</a></li>
+        			<?php 
+        			if ($currentUser->get_type() == "administrator") {
+        				echo '<li><a href="create-event.php">Ново Събитие</a></li>';
+        			}
+
+        			?>        			
       			</ul>
       			<ul class="nav navbar-nav navbar-right">
       				<li><a href=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $currentUser->get_full_name(); ?></a></li>
@@ -79,38 +88,33 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
   		</div>
 	</nav>
 	<div class="container">
-    	<form method="post">
-			
-			<input id="title" type="text" name="title" placeholder="Заглавие" class="form-control" required>
-			<br>
-			
-			<!-- must be text area ! -->
-			<input id="description" type="text" name="description" placeholder="Описание" class="form-control" required>
-			<br>
-			
-			<input id="date" type="datetime-local" name="date" placeholder="Дата и час" class="form-control" required>
-			<br>
-
-			
-			<select class="form-control" id="category" name="category">
-          		<option value="lecture">Лекция</option>
-          		<option value="homework">Домашно</option>
-          		<option value="exam">Упражнение</option>
-          		<option value="test">Контролно</option>
-          		<option value="exercise">Проект</option>
-          		<option value="external">Външно събитие</option>
-        	</select>
-        	<br>
-			
-			<input id="place" type="text" name="place" placeholder="Място" class="form-control">
-			<br>
-			<!-- add cancel button -->
-			<input type="submit" value="Добави" class="btn btn-primary" id="btn-create">
-		</form>
+    	<div id="calendar"></div>
     </div>
-    <footer>
+
+
+	<div id="fullCalModal" class="modal fade">
+    	<div class="modal-dialog">
+    	    <div class="modal-content">
+    	        <div class="modal-header">
+    	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                	<h4 id="modalTitle" class="modal-title"></h4>
+            	</div>
+            	<div id="modalBody" class="modal-body"></div>
+            	<div class="modal-footer">
+            	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            	    <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
+            	</div>
+        	</div>
+    	</div>
+	</div>
+
+	<div>
+		<input class="form-control hidden" id="username-hidden" type="text" value=<?php echo $currentUser->get_username(); ?>>
+	</div>
+
+	<footer>
     	<div class="container">
-        	<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
+    		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
       	</div>
     </footer>
 </body>
