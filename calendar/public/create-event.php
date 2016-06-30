@@ -41,7 +41,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     <script type="text/javascript" src="js/create-event.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
   		<div class="container-fluid">
   			<div class="navbar-header">
   		    	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -57,7 +57,19 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
       			<ul class="nav navbar-nav">
         			<li><a href="home.php">Home</a></li>
         			<li><a href="">Calendar</a></li>
-        			<li><a href="">Events</a></li>
+        			<li class="dropdown">
+          				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Events <span class="caret"></span></a>
+          				<ul class="dropdown-menu" role="menu">
+            				<li><a id="lecture" href="view-events.php?category=lecture">Lectures</a></li>
+            				<li><a id="homework" href="view-events.php?category=homework">Homeworks</a></li>
+            				<li><a id="exercise" href="view-events.php?category=exercise">Exercises</a></li>
+            				<li><a id="test" href="view-events.php?category=test">Tests</a></li>
+            				<li><a id="project" href="view-events.php?category=project">Projects</a></li>
+            				<li class="divider"></li>
+            				<li><a id="external" href="view-events.php?category=external">External Events</a></li>
+          				</ul>
+        			</li>
+        			<!-- <li><a href="events.php">Events</a></li> -->
         			<li class="active"><a href="create-event.php">New Event</a></li>
       			</ul>
       			<ul class="nav navbar-nav navbar-right">

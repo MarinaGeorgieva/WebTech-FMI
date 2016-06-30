@@ -4,3 +4,4 @@ Fix api
 Fix request errors
 
 Create event - fix success function -> show success message and redirect to events
+Validate forms for login, registration and create event

@@ -3,10 +3,14 @@
 include_once '../database.php';
 include_once '../utils.php';
 
-function get_all() {
+function get_all($username) {
 	global $connection;
-	$sql = "SELECT * FROM events";
+	$sql = "SELECT * FROM events e
+			WHERE e.id NOT IN (SELECT eu.event_id
+                  			   FROM events_users eu
+                  			   WHERE eu.username=:username AND eu.subscribed=0);";
 	$query = $connection->prepare($sql);
+	$query->bindParam(":username", $username);
 	$query->execute();
 	$data = array();
 
@@ -22,6 +26,21 @@ function get_by_id($id) {
 	$sql = "SELECT * FROM events WHERE id=:id";
 	$query = $connection->prepare($sql);
 	$query->bindParam(":id", $id);
+	$query->execute();
+	$data = array();
+
+	while($row=$query->fetch(PDO::FETCH_ASSOC)){
+		$data["events"][] = $row;
+	}
+	
+	return json_encode($data);
+}
+
+function get_by_category($category) {
+	global $connection;	
+	$sql = "SELECT * FROM events WHERE category=:category";
+	$query = $connection->prepare($sql);
+	$query->bindParam(":category", $category);
 	$query->execute();
 	$data = array();
 
@@ -63,14 +82,20 @@ function create($title, $description, $type, $place, $date) {
 	return "err";
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET["id"])) {
-	$data = get_all();
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !isset($_GET["id"]) && isset($_GET["user"])) {
+	$data = get_all($_GET["user"]);
 	echo $data;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
 	$id = $_GET["id"];
 	$data = get_by_id($id);
+	echo $data;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["category"])) {
+	$category = $_GET["category"];
+	$data = get_by_category($category);
 	echo $data;
 }
 
