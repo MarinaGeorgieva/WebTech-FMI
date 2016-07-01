@@ -8,46 +8,6 @@ if(isset($_SESSION['user']) != "") {
 	redirect_to("home.php");
 }
 
-// if(isset($_POST['btn-register'])) {
-// 	$username = $_POST['username'];
-// 	$firstName = $_POST['first_name'];
-// 	$lastName = $_POST['last_name'];
-// 	$password = $_POST['password'];
-// 	$confirmPassword = $_POST['confirm_password'];
-
-// 	if ($password != $confirmPassword) {
-// 		?>
- 		<!-- <script>alert('Password and confirm password do not match!')</script> -->
- 		<?php
-// 		redirect_to("register.php");
-// 	}
-
-// 	$password = sha1($password);
-
-// 	$sql = "INSERT INTO users (username, password, first_name, last_name) 
-// 		VALUES (:username, :password, :first_name, :last_name)";
-// 	$query = $connection->prepare($sql);
-
-// 	$query->bindParam(':username', $username);
-// 	$query->bindParam(':password', $password);
-// 	$query->bindParam(':first_name', $firstName);
-// 	$query->bindParam(':last_name', $lastName);
-
-
-// 	$is_successful = $query->execute();
-// 	echo $is_successful;
-
-// 	if($is_successful) {
-// 		?>
-         <!-- <script>alert('Successfully registered!');</script> -->
-         <?php
-//  	}
-//  	else {
-//  		?>
-         <!-- <script>alert('Username is taken!');</script> -->
-         <?php
-//  	}
-// }
 ?>
 
 <!DOCTYPE html>

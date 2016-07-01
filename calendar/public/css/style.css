@@ -86,9 +86,22 @@ label.error {
 
 .fc-event {
 	cursor: pointer;
+	height: 30px;
+}
+
+.fc-content {
+	margin: 8px 0px 8px 5px;
 }
 /* Calendar */
 
 .welcome-header {
 	margin-top: 60px;
+}
+
+.date-place {
+	margin-right: 20px;
+}
+
+.btn-subscribe {
+	margin-right: 10px;
 }

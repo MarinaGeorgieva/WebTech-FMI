@@ -3,6 +3,10 @@
 require_once 'database.php';
 
 function seed_data() {
+	seed_users();
+}
+
+function seed_users() {
 	global $connection;
 	$sql = "SELECT * FROM users";
 	$query = $connection->prepare($sql);

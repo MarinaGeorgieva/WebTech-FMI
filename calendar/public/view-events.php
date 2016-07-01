@@ -84,12 +84,14 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
     		</div>
   		</div>
 	</nav>
-
+	<div>
+		<input class="form-control hidden" id="username-hidden" type="text" value=<?php echo $currentUser->get_username(); ?>>
+	</div>
 	<div class="container">
+		<h4 id="categoryName"></h4>
 		<div class="list-group">  			
 		</div>
 	</div>
-
 	<footer>
     	<div class="container">
     		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>

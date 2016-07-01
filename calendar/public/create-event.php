@@ -21,6 +21,10 @@ $type = $user['type'];
 
 $currentUser = new User($username, $password, $first_name, $last_name, $type);
 
+if(isset($_SESSION['user']) && $type != "administrator") {
+	redirect_to("index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +41,7 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
 
     <script type="text/javascript" src="js/create-event.js"></script>
 </head>
@@ -79,33 +84,52 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
   		</div>
 	</nav>
 	<div class="container">
-    	<form method="post">
-			
-			<input id="title" type="text" name="title" placeholder="Заглавие" class="form-control" required>
-			<br>
-			
-			<!-- must be text area ! -->
-			<input id="description" type="text" name="description" placeholder="Описание" class="form-control" required>
-			<br>
-			
-			<input id="date" type="datetime-local" name="date" placeholder="Дата и час" class="form-control" required>
-			<br>
-
-			
-			<select class="form-control" id="category" name="category">
-          		<option value="lecture">Лекция</option>
-          		<option value="homework">Домашно</option>
-          		<option value="exam">Упражнение</option>
-          		<option value="test">Контролно</option>
-          		<option value="exercise">Проект</option>
-          		<option value="external">Външно събитие</option>
-        	</select>
-        	<br>
-			
-			<input id="place" type="text" name="place" placeholder="Място" class="form-control">
-			<br>
+    	<form method="post" class="form-horizontal" id="create-event-form">
+    		<div class="form-group">
+    			<label for="title" class="col-lg-2 control-label">Заглавие</label>
+    			<div class="col-lg-10">
+    				<input id="title" type="text" name="title" placeholder="Заглавие" class="form-control">
+    			</div>
+    		</div>
+    		<div class="form-group">
+      			<label for="description" class="col-lg-2 control-label">Описание</label>
+      			<div class="col-lg-10">
+        			<textarea class="form-control" rows="5" id="description" name="description" placeholder="Кратко описание за събитието..."></textarea>
+      			</div>
+    		</div>
+    		<div class="form-group">
+    			<label for="date" class="col-lg-2 control-label">Дата и час</label>
+    			<div class="col-lg-10">
+    				<input id="date" type="datetime-local" name="date" placeholder="Дата и час" class="form-control">
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<label for="category" class="col-lg-2 control-label">Категория</label>
+      			<div class="col-lg-10">
+      				<select class="form-control" id="category" name="category">
+          				<option value="lecture">Лекция</option>
+          				<option value="homework">Домашно</option>
+          				<option value="exam">Упражнение</option>
+          				<option value="test">Контролно</option>
+          				<option value="exercise">Проект</option>
+          				<option value="external">Външно събитие</option>
+        			</select>
+      			</div>
+    		</div>
+    		<div class="form-group">
+    			<label for="place" class="col-lg-2 control-label">Място</label>
+    			<div class="col-lg-10">
+    				<input id="place" type="text" name="place" placeholder="Място" class="form-control">
+    			</div>
+    		</div>
+			<div class="form-group">
+      			<div class="col-lg-10 col-lg-offset-2">
+        			<button type="reset" class="btn btn-default">Откажи</button>
+        			<button type="submit" value="Добави" class="btn btn-primary" id="btn-create">Добави</button>
+      			</div>
+    		</div>
 			<!-- add cancel button -->
-			<input type="submit" value="Добави" class="btn btn-primary" id="btn-create">
+			<!-- <input type="submit" value="Добави" class="btn btn-primary" id="btn-create"> -->
 		</form>
     </div>
     <footer>

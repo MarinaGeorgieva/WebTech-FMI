@@ -90,28 +90,25 @@ $currentUser = new User($username, $password, $first_name, $last_name, $type);
 	<div class="container">
     	<div id="calendar"></div>
     </div>
-
-
 	<div id="fullCalModal" class="modal fade">
     	<div class="modal-dialog">
     	    <div class="modal-content">
     	        <div class="modal-header">
     	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
                 	<h4 id="modalTitle" class="modal-title"></h4>
+                    <div id="eventId" class="hidden"></div>
             	</div>
             	<div id="modalBody" class="modal-body"></div>
             	<div class="modal-footer">
-            	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            	    <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
+                    <button id="btn-unsubscribe" class="btn btn-primary" type="button">Премахни от календара</button>
+            	    <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>            	    
             	</div>
         	</div>
     	</div>
 	</div>
-
 	<div>
 		<input class="form-control hidden" id="username-hidden" type="text" value=<?php echo $currentUser->get_username(); ?>>
 	</div>
-
 	<footer>
     	<div class="container">
     		<p class="text-center">&copy; Web Tech Course @ FMI 2016, Created By Marina</p>
